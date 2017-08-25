@@ -2,6 +2,7 @@ import React from 'react'
 
 import Space from '../components/Space'
 import Button from '../components/Button'
+import Divider from '../components/Divider'
 import { FlexRow, FlexColumn, FlexCenter } from '../components/Flex'
 
 import './home.css'
@@ -11,23 +12,11 @@ const Home = ({ primary }) => (
     <section>
       <h1>Open<strong>Gartic</strong></h1>
       <FlexColumn>
-        <Space padding={8}>
-          <Button primary size="s">small primary</Button>
+        <Space padding="8px 0">
+          <Button primary fit size="xl">enter room</Button>
         </Space>
-        <Space padding={8}>
-          <Button primary size="m">regular primary</Button>
-        </Space>
-        <Space padding={8}>
-          <Button primary size="l">large primary</Button>
-        </Space>
-        <Space padding={8}>
-          <Button primary size="xl">extra-large primary</Button>
-        </Space>
-        <Space padding={8}>
-          <Button disabled>regular disabled</Button>
-        </Space>
-        <Space padding={8}>
-          <Button ghost primary>regular ghost</Button>
+        <Space padding="8px 0">
+          <Button fit size="xl">create room</Button>
         </Space>
       </FlexColumn>
     </section>

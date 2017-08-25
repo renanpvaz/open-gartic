@@ -8,6 +8,7 @@ const Button = ({
   primary,
   ghost,
   disabled,
+  fit,
   size = 'm',
 }) => (
   <button
@@ -16,6 +17,7 @@ const Button = ({
       classNames(
         'button',
         `button--${size}`,
+        fit && 'button--fit',
         primary && 'button--primary',
         ghost && 'button--ghost',
       )

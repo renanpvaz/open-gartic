@@ -35,6 +35,10 @@ button {
   border: none;
 }
 
+i {
+  font-style: italic;
+}
+
 strong {
   font-weight: bold;
 }
@@ -45,6 +49,9 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Slabo 27px';
   font-weight: normal;
+}
+
+h1 {
+  font-size: 3rem;
 }

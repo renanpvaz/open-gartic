@@ -1,0 +1,13 @@
+.divider {
+  width: 1px;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.divider--horizontal {
+  width: 100%;
+}
+
+.divider--vertical {
+  height: 100%;
+}

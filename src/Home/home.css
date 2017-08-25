@@ -1,11 +1,12 @@
 .home {
   position: relative;
-  max-width: 900px;
+  max-width: 400px;
   margin: auto;
   height: 100vh;
 }
 
 .home > section {
+  width: 100%;
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
