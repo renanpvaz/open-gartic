@@ -3,17 +3,22 @@ import React from 'react'
 const Space = ({
   Tag = 'div',
   children,
+  innerRef,
   padding = 'initial',
   margin = 'initial',
-  width = 'initial',
-  height = 'initial',
+  width = 'auto',
+  height = 'auto',
+  size
 }) => (
   <Tag
+    ref={innerRef}
     style={{
       padding,
       margin,
       width,
       height,
+      maxWidth: size,
+      maxHeight: size,
     }}
   >
     {children}

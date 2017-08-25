@@ -1,0 +1,9 @@
+.palette {
+
+}
+
+.palette button {
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+}
