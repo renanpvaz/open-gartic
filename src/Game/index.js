@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Sidebar from '../components/Sidebar'
-import ChatContainer from '../components/ChatContainer'
+import ChatBox from '../components/ChatBox'
 import Palette from '../components/Palette'
 import Ranking from '../components/Ranking'
 import Space from '../components/Space'
@@ -45,7 +45,7 @@ class Game extends React.Component {
           </Space>
         </FlexRow>
         <Space height="40vh" width="100vw">
-          <ChatContainer />
+          <ChatBox />
         </Space>
       </main>
     )
