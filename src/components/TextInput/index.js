@@ -8,11 +8,13 @@ const TextInput = ({
   onChange,
   preffix = '',
   placeholder,
+  autoFocus,
   big
 }) => (
   <input
     className={classNames('text-input', big && 'text-input--big')}
     type="text"
+    ref={input => autoFocus && input && input.focus()}
     value={value}
     placeholder={placeholder}
     onChange={({ target }) => onChange(target.value)}

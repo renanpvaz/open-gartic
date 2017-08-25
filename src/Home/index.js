@@ -17,7 +17,7 @@ const Home = ({ primary }) => (
         </Space>
         <FlexColumn>
           <Space fit padding="4px 0">
-            <TextInput big placeholder="room name" value="" />
+            <TextInput autoFocus big placeholder="room name" value="" />
           </Space>
           <Space fit padding="4px 0" mb="2">
             <TextInput big placeholder="username" value="" />
