@@ -1,0 +1,89 @@
+button.button {
+  font-family: inherit;
+  min-height: 32px;
+  font-weight: bold;
+  padding: 8px;
+  color: white;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  background-color: #ccc;
+  box-shadow: 1px 2px 0 rgb(132, 132, 132);
+  transition: filter background-color .1s ease-in;
+}
+
+.button:focus,
+.button:not([disabled]):hover {
+  filter: brightness(1.1);
+}
+
+.button.button--primary.button--ghost:hover {
+  filter: brightness(1);
+  background-color: #26968c;
+  color: white;
+  box-shadow: none;
+}
+
+.button.button--s {
+  min-height: 32px;
+}
+
+.button.button--s.button--primary {
+  box-shadow: rgb(0, 119, 112) 0 1px 0px .5px;
+}
+
+.button.button--m {
+  font-size: 17px;
+  min-height: 40px;
+  padding: 8px 16px;
+}
+
+.button.button--m.button--primary {
+  box-shadow: rgb(0, 119, 112) 0 1.5px 0px 1px;
+}
+
+.button.button--l {
+  min-height: 48px;
+  font-size: 18px;
+  padding: 12px 32px;
+}
+
+.button.button--l.button--primary {
+  box-shadow: rgb(0, 119, 112) 0 2px 0px 1px;
+}
+
+.button.button--xl {
+  min-height: 56px;
+  font-size: 19px;
+  padding: 20px 40px;
+}
+
+.button.button--xl.button--primary {
+  box-shadow: rgb(0, 119, 112) 0 3px 0px 1px;
+}
+
+.button.button--primary {
+  background-color: #26968c;
+}
+
+.button.button--ghost {
+  border: 1px solid;
+  transition: background-color .4s ease-in-out;
+  background-color: transparent;
+}
+
+.button.button--primary.button--ghost {
+  color: #26968c;
+  background-color: white;
+  box-shadow: none;
+}
+
+.button[disabled],
+.button:not(.button--ghost):active {
+  transform: translateY(3px);
+  box-shadow: none !important;
+}
+
+.button[disabled] {
+  cursor: default;
+}
