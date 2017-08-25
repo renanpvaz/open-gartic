@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import './sketch-pad.css'
+
 class Sketchpad extends React.Component {
   constructor(props) {
     super(props)
@@ -31,6 +33,7 @@ class Sketchpad extends React.Component {
       this.resetCanvas()
     }
   }
+  
   handleMouseDown(e) {
     const rect = this.state.canvas.getBoundingClientRect()
 
@@ -89,6 +92,7 @@ class Sketchpad extends React.Component {
   render() {
     return (
       <canvas
+        className="sketch-pad"
         width="100%"
         height={this.props.height}
         onMouseDown={this.handleMouseDown}

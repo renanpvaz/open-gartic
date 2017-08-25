@@ -22,7 +22,7 @@ class Game extends React.Component {
     return (
       <main className="game">
         <FlexRow>
-          <Space height="60vh" width="20vw">
+          <Space height="60vh" width="10vw">
             <Sidebar>
               <FlexRow alignItems="start">
                 <Ranking />
@@ -31,10 +31,10 @@ class Game extends React.Component {
                   colors={[
                     'black',
                     'white',
-                    'red',
-                    'blue',
-                    'yellow',
-                    'green',
+                    '#DC5960',
+                    '#08c',
+                    '#ffd248',
+                    '#26968c',
                   ]}
                 />
               </FlexRow>
