@@ -1,0 +1,16 @@
+.text-input {
+  width: 100%;
+  padding: 8px;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  border: 2px solid rgb(202, 196, 201);
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.text-input.text-input--big {
+  font-size: 18px;
+  padding: 16px;
+}

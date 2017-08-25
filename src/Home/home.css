@@ -1,14 +1,22 @@
 .home {
+  height: 100vh;
+  width: 100vw;
+  background-size: 20px 20px;
+  background-image:
+    linear-gradient(to right, rgba(128, 128, 128, .1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(128, 128, 128, .1) 1px, transparent 1px);
+}
+
+.home .home__content {
   position: relative;
   max-width: 400px;
   margin: auto;
   height: 100vh;
 }
 
-.home > section {
+.home .home__content > section {
   width: 100%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
