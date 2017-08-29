@@ -12,20 +12,20 @@ const Home = ({ primary }) => (
   <main className="home">
     <div className="home__content">
       <section>
-        <Space mb="2">
+        <Space mB="2">
           <h1>Open<strong>Gartic</strong></h1>
         </Space>
         <FlexColumn>
-          <Space fit padding="4px 0">
+          <Space fit pY={0}>
             <TextInput autoFocus big placeholder="room name" value="" />
           </Space>
-          <Space fit padding="4px 0" mb="2">
+          <Space fit pY={0} mB="2">
             <TextInput big placeholder="username" value="" />
           </Space>
-          <Space padding="8px 0">
+          <Space pY="1">
             <Button primary fit size="xl">join room</Button>
           </Space>
-          <Space padding="8px 0">
+          <Space pY="1">
             <Button fit size="xl">create room</Button>
           </Space>
         </FlexColumn>

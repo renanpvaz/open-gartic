@@ -1,12 +1,9 @@
 import React from 'react'
 
-const points = [
-  8,
-  16,
-  24,
-  32,
-  40
-]
+const points = {
+  'undefined': '',
+  ...['4px', '8px', '16px', '24px', '32px', '40px']
+}
 
 const Space = ({
   Tag = 'div',
@@ -14,7 +11,14 @@ const Space = ({
   innerRef,
   padding = 'initial',
   margin = 'initial',
-  mb = 0,
+  p,
+  pX,
+  pY,
+  pB,
+  m,
+  mX,
+  mY,
+  mB,
   width = 'auto',
   height = 'auto',
   size,
@@ -23,9 +27,8 @@ const Space = ({
   <Tag
     ref={innerRef}
     style={{
-      padding,
-      margin,
-      marginBottom: points[mb],
+      padding: `${points[pY] || 0} ${points[pX] || 0} ${points[pB]}`,
+      margin: `${points[mY] || 0} ${points[mX] || 0} ${points[mB]}`,
       width: fit ? '100%' : width,
       height,
       maxWidth: size,
