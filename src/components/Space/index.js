@@ -2,15 +2,13 @@ import React from 'react'
 
 const points = {
   'undefined': '',
-  ...['4px', '8px', '16px', '24px', '32px', '40px']
+  ...Array(12).fill(0).map((_, i) => `${.25 * (i + 1)}rem`)
 }
 
 const Space = ({
   Tag = 'div',
   children,
   innerRef,
-  padding = 'initial',
-  margin = 'initial',
   p,
   pX,
   pY,

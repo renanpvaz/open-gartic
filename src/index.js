@@ -11,6 +11,8 @@ import { Route } from 'react-router'
 import './index.css'
 import Game from './Game'
 import Home from './Home'
+import InitialScreen from './InitialScreen'
+import NewRoom from './NewRoom'
 import registerServiceWorker from './registerServiceWorker'
 
 const history = createHistory()
@@ -27,7 +29,10 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <div>
-        <Route exact path="/" component={Home}/>
+        <Home>
+          <Route exact path="/" component={InitialScreen}/>
+          <Route exact path="/new-room" component={NewRoom}/>
+        </Home>
         <Route path="/game" component={Game}/>
       </div>
     </ConnectedRouter>

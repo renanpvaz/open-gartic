@@ -4,6 +4,7 @@ import classNames from 'classnames'
 import './text-input.css'
 
 const TextInput = ({
+  name,
   value = '',
   onChange,
   preffix = '',
@@ -12,6 +13,7 @@ const TextInput = ({
   big
 }) => (
   <input
+    name={name}
     className={classNames('text-input', big && 'text-input--big')}
     type="text"
     ref={input => autoFocus && input && input.focus()}
