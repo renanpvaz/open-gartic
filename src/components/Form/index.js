@@ -1,9 +1,9 @@
 import React from 'react'
 
-import Space from '../components/Space'
-import TextInput from '../components/TextInput'
-import Button from '../components/Button'
-import Flex from '../components/Flex'
+import Space from '../Space'
+import TextInput from '../TextInput'
+import Button from '../Button'
+import Flex from '../Flex'
 
 const Form = ({ children, actions }) => (
   <Flex.Column tag="form">

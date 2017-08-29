@@ -1,0 +1,15 @@
+label.label {
+  display: block;
+  font-weight: bold;
+  font-size: 1.125rem;
+}
+
+.label > span {
+  display: block;
+  margin-bottom: .5rem;
+}
+
+.label--required > span:after {
+  content: ' *';
+  color: #ff5600;
+}
