@@ -23,17 +23,16 @@ const Flex = ({
   </Tag>
 )
 
-const FlexColumn = props => <Flex {...props} flexDirection="column" />
-const FlexRow = props => <Flex {...props} flexDirection="row" />
-const FlexWrap = props => <Flex {...props} flexDirection="row" flexWrap="wrap" />
-const FlexCenter = props => <Flex {...props} justifyContent="center" alignItems="center" />
+const Column = props => <Flex {...props} flexDirection="column" />
+const Row = props => <Flex {...props} flexDirection="row" />
+const Wrap = props => <Flex {...props} flexDirection="row" flexWrap="wrap" />
+const Center = props => <Flex {...props} justifyContent="center" alignItems="center" />
+const SpaceBetween = props => <Flex {...props} flexDirection="row" justifyContent="space-between" />
 
-export {
-  Flex,
-  FlexColumn,
-  FlexRow,
-  FlexCenter,
-  FlexWrap,
+export default {
+  Column,
+  Row,
+  Center,
+  Wrap,
+  SpaceBetween,
 }
-
-export default Flex

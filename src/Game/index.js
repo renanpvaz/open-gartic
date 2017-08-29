@@ -6,7 +6,7 @@ import Palette from '../components/Palette'
 import Ranking from '../components/Ranking'
 import Space from '../components/Space'
 import SketchPad from '../components/SketchPad'
-import { FlexRow } from '../components/Flex'
+import Flex from '../components/Flex'
 
 class Game extends React.Component {
   constructor(props) {
@@ -21,10 +21,10 @@ class Game extends React.Component {
   render() {
     return (
       <main className="game">
-        <FlexRow>
+        <Flex.Row>
           <Space height="60vh" width="10vw">
             <Sidebar>
-              <FlexRow alignItems="start">
+              <Flex.Row alignItems="start">
                 <Ranking />
                 <Palette
                   onSelect={color => this.setState({ brushColor: color })}
@@ -37,13 +37,13 @@ class Game extends React.Component {
                     '#26968c',
                   ]}
                 />
-              </FlexRow>
+              </Flex.Row>
             </Sidebar>
           </Space>
           <Space innerRef={ref => (this.el = ref)} width="100%" height="60vh">
             <SketchPad brushColor={this.state.brushColor} height={this.el.height} />
           </Space>
-        </FlexRow>
+        </Flex.Row>
         <Space height="40vh" width="100vw">
           <ChatBox />
         </Space>

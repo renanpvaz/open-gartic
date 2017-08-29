@@ -1,12 +1,12 @@
 import React from 'react'
 
-import { FlexWrap } from '../Flex'
+import Flex from '../Flex'
 import Space from '../Space'
 
 import './palette.css'
 
 const Palette = ({ colors, onSelect }) => (
-  <FlexWrap className="palette">
+  <Flex.Wrap className="palette">
     {
       colors.map(color => (
         <Space padding={8} size={32}>
@@ -17,7 +17,7 @@ const Palette = ({ colors, onSelect }) => (
         </Space>
       ))
     }
-  </FlexWrap>
+  </Flex.Wrap>
 )
 
 export default Palette

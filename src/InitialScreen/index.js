@@ -3,10 +3,10 @@ import React from 'react'
 import Space from '../components/Space'
 import TextInput from '../components/TextInput'
 import Button from '../components/Button'
-import { FlexColumn } from '../components/Flex'
+import Flex from '../components/Flex'
 
 const InitialScreen = () => (
-  <FlexColumn>
+  <Flex.Column>
     <Space fit pY={0}>
       <TextInput autoFocus big placeholder="room name" value="" />
     </Space>
@@ -19,7 +19,7 @@ const InitialScreen = () => (
     <Space pY="1">
       <Button fit size="xl">create room</Button>
     </Space>
-  </FlexColumn>
+  </Flex.Column>
 )
 
 export default InitialScreen

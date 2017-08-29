@@ -1,6 +1,8 @@
 import React from 'react'
 
 const points = {
+  'false': '',
+  'null': '',
   'undefined': '',
   ...Array(12).fill(0).map((_, i) => `${.25 * (i + 1)}rem`)
 }

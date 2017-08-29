@@ -5,14 +5,14 @@ import Space from '../components/Space'
 import TextInput from '../components/TextInput'
 import Button from '../components/Button'
 import Tag from '../components/Tag'
-import { FlexColumn, FlexWrap } from '../components/Flex'
+import Flex from '../components/Flex'
 
 const enhance = compose(
   withState('words', 'setWords', ['open', 'gartic', 'is', 'so', 'cool','open', 'gartic', 'is', 'so', 'cool','open', 'gartic', 'is', 'so', 'cool','open', 'gartic', 'is', 'so', 'cool']),
 )
 
 const NewRoom = ({ words, setWords }) => (
-  <FlexColumn>
+  <Flex.Column>
     <Space fit pY={0}>
       <TextInput autoFocus big placeholder="time to draw" value="" />
     </Space>
@@ -22,8 +22,8 @@ const NewRoom = ({ words, setWords }) => (
     <Space fit pY={0}>
       <TextInput autoFocus big placeholder="words" value="" />
     </Space>
-    <FlexWrap>{words.map(word => <Tag>{word}</Tag>)}</FlexWrap>
-  </FlexColumn>
+    <Flex.Wrap>{words.map(word => <Tag>{word}</Tag>)}</Flex.Wrap>
+  </Flex.Column>
 )
 
 export default enhance(NewRoom)
