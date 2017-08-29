@@ -5,13 +5,16 @@ import TextInput from '../TextInput'
 import Button from '../Button'
 import Flex from '../Flex'
 
-const Form = ({ children, actions }) => (
+const Form = ({ children, primaryAction, secondaryAction }) => (
   <Flex.Column tag="form">
     <Space mB={2}>
-      {children.map(child => <Space fit mY={0}>{child}</Space>)}
+      {children.map(child => <Space fit mY={2}>{child}</Space>)}
     </Space>
-    <Flex.Row justifyContent="flex-end">
-      {actions}
+    <Flex.Row tag="footer" justifyContent="flex-end">
+      <Space mX={2}>
+        {secondaryAction}
+      </Space>
+      {primaryAction}
     </Flex.Row>
   </Flex.Column>
 )

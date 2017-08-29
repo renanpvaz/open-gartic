@@ -10,16 +10,18 @@ const TextInput = ({
   preffix = '',
   placeholder,
   autoFocus,
+  onPressEnter,
   big
 }) => (
   <input
     name={name}
     className={classNames('text-input', big && 'text-input--big')}
     type="text"
-    ref={input => autoFocus && input && input.focus()}
+    // ref={input => autoFocus && input && input.focus()}
     value={value}
     placeholder={placeholder}
-    onChange={({ target }) => onChange(target.value)}
+    onKeyPress={e => e.key === 'Enter' && onPressEnter(e)}
+    onChange={({ target }) => onChange(target)}
   />
 )
 

@@ -4,7 +4,7 @@ label.label {
   font-size: 1.125rem;
 }
 
-.label > span {
+.label .label__title {
   display: block;
   margin-bottom: .5rem;
 }
@@ -12,4 +12,10 @@ label.label {
 .label--required > span:after {
   content: ' *';
   color: #ff5600;
+}
+
+.label .label__info {
+  color: #aaa;
+  font-weight: normal;
+  font-size: 14px;
 }

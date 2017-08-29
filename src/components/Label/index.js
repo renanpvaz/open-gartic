@@ -3,12 +3,15 @@ import classNames from 'classnames'
 
 import './label.css'
 
-const Label = ({ required, children }) => {
+const Label = ({ required, info, children }) => {
   const [label, ...rest] = children
 
   return (
     <label className={classNames('label', required && 'label--required')}>
-      <span>{label}</span>
+      <span className="label__title">
+        {label}
+        {info && <small className="label__info"> &nbsp;({info})</small>}
+      </span>
       {rest}
     </label>
   )
