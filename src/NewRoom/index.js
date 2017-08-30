@@ -1,5 +1,8 @@
 import React from 'react'
-import { compose, withState, mapProps, withStateHandlers } from 'recompose'
+import firebase from 'firebase'
+import { compose, withProps, withStateHandlers, withHandlers } from 'recompose'
+
+import withCollection from '../utils/with-collection'
 
 import Space from '../components/Space'
 import TextInput from '../components/TextInput'
@@ -10,21 +13,27 @@ import Label from '../components/Label'
 import Form from '../components/Form'
 
 const enhance = compose(
+  withProps(withCollection(firebase, 'rooms')),
   withStateHandlers(
     () => ({
       words: [],
+      name: '',
       newWord: '',
       timeToDraw: '',
       numberOfUsers: '',
     }),
     {
-      handleUpdate: () => target => ({ [target.name]: target.value }),
-      handleEnter: ({ newWord, words }) => target => ({
+      onFieldChange: () => target => ({ [target.name]: target.value }),
+      onAddWord: ({ newWord, words }) => target => ({
         newWord: '',
         words: newWord.length ? [...words, newWord] : words
-      }),
+      })
     }
-  )
+  ),
+  withHandlers({
+    onSubmit: ({ rooms, name, words, timeToDraw, numberOfUsers }) => () =>
+      rooms.persist(name, { words, timeToDraw, numberOfUsers })
+  })
 )
 
 const NewRoom = ({
@@ -32,19 +41,30 @@ const NewRoom = ({
   timeToDraw,
   numberOfUsers,
   newWord,
-  handleUpdate,
-  handleEnter
+  name,
+  onFieldChange,
+  onAddWord,
+  onSubmit
 }) => (
   <Flex.Column>
     <Form
-      primaryAction={<Button primary>create room</Button>}
+      primaryAction={<Button onClick={onSubmit} primary>create room</Button>}
       secondaryAction={<Button>cancel</Button>}
     >
+      <Label>
+        Room name
+        <TextInput
+          name="name"
+          onChange={onFieldChange}
+          autoFocus
+          value={name}
+        />
+      </Label>
       <Label>
         Time to draw
         <TextInput
           name="timeToDraw"
-          onChange={handleUpdate}
+          onChange={onFieldChange}
           autoFocus
           value={timeToDraw}
         />
@@ -53,7 +73,7 @@ const NewRoom = ({
         Number of users
         <TextInput
           name="numberOfUsers"
-          onChange={handleUpdate}
+          onChange={onFieldChange}
           value={numberOfUsers}
         />
       </Label>
@@ -61,8 +81,8 @@ const NewRoom = ({
         Word list
         <TextInput
           name="newWord"
-          onChange={handleUpdate}
-          onPressEnter={handleEnter}
+          onChange={onFieldChange}
+          onPressEnter={onAddWord}
           value={newWord}
         />
       </Label>

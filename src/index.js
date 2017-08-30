@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import * as firebase from 'firebase'
 
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
@@ -17,6 +18,17 @@ import registerServiceWorker from './registerServiceWorker'
 
 const history = createHistory()
 const middleware = routerMiddleware()
+
+firebase.initializeApp({
+  apiKey: "AIzaSyAQ-8ciFkzyRkCtoxsflrPyGjMRVMOd93Q",
+  authDomain: "open-gartic.firebaseapp.com",
+  databaseURL: "https://open-gartic.firebaseio.com",
+  projectId: "open-gartic",
+  storageBucket: "open-gartic.appspot.com",
+  messagingSenderId: "83017664694"
+})
+
+firebase.auth().signInAnonymously()
 
 const store = createStore(
   combineReducers({

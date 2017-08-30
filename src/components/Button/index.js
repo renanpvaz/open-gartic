@@ -10,8 +10,10 @@ const Button = ({
   disabled,
   fit,
   size = 'm',
+  onClick
 }) => (
   <button
+    onClick={onClick}
     disabled={disabled}
     className={
       classNames(
