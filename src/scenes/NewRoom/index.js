@@ -2,16 +2,16 @@ import React from 'react'
 import firebase from 'firebase'
 import { compose, withProps, withStateHandlers, withHandlers } from 'recompose'
 
-import withCollection from '../HOCs/with-collection'
-import withCurrentUser from '../HOCs/with-current-user'
+import withCollection from '../../HOCs/with-collection'
+import withCurrentUser from '../../HOCs/with-current-user'
 
-import Space from '../components/Space'
-import TextInput from '../components/TextInput'
-import Button from '../components/Button'
-import Tag from '../components/Tag'
-import Flex from '../components/Flex'
-import Label from '../components/Label'
-import Form from '../components/Form'
+import Space from '../../components/Space'
+import TextInput from '../../components/TextInput'
+import Button from '../../components/Button'
+import Tag from '../../components/Tag'
+import Flex from '../../components/Flex'
+import Label from '../../components/Label'
+import Form from '../../components/Form'
 
 const enhance = compose(
   withCurrentUser(firebase),

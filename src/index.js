@@ -10,10 +10,10 @@ import createHistory from 'history/createBrowserHistory'
 import { Route, Redirect, Switch } from 'react-router'
 
 import './index.css'
-import Game from './Game'
-import Home from './Home'
-import InitialScreen from './InitialScreen'
-import NewRoom from './NewRoom'
+import Game from './scenes/Game'
+import Home from './scenes/Home'
+import InitialScreen from './scenes/InitialScreen'
+import NewRoom from './scenes/NewRoom'
 import registerServiceWorker from './registerServiceWorker'
 
 const history = createHistory()

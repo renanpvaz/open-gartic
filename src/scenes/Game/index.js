@@ -2,16 +2,16 @@ import React from 'react'
 import firebase from 'firebase'
 import { compose, lifecycle } from 'recompose'
 
-import withCollection from '../HOCs/with-collection'
-import withCurrentUser from '../HOCs/with-current-user'
+import withCollection from '../../HOCs/with-collection'
+import withCurrentUser from '../../HOCs/with-current-user'
 
-import Sidebar from '../components/Sidebar'
-import ChatBox from '../components/ChatBox'
-import Palette from '../components/Palette'
-import Ranking from '../components/Ranking'
-import Space from '../components/Space'
-import SketchPad from '../components/SketchPad'
-import Flex from '../components/Flex'
+import Sidebar from '../../components/Sidebar'
+import ChatBox from '../../components/ChatBox'
+import Palette from '../../components/Palette'
+import Ranking from '../../components/Ranking'
+import Space from '../../components/Space'
+import SketchPad from '../../components/SketchPad'
+import Flex from '../../components/Flex'
 
 const enhance = compose(
   withCurrentUser(firebase),

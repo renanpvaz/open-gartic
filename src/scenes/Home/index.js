@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Space from '../components/Space'
+import Space from '../../components/Space'
 
 import './home.css'
 
