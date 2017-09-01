@@ -17,7 +17,6 @@ const TextInput = ({
     name={name}
     className={classNames('text-input', big && 'text-input--big')}
     type="text"
-    // ref={input => autoFocus && input && input.focus()}
     value={value}
     placeholder={placeholder}
     onKeyPress={e => e.key === 'Enter' && onPressEnter(e)}

@@ -7,7 +7,7 @@ import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-ro
 import { Provider } from 'react-redux'
 
 import createHistory from 'history/createBrowserHistory'
-import { Route } from 'react-router'
+import { Route, Redirect, Switch } from 'react-router'
 
 import './index.css'
 import Game from './Game'
@@ -40,13 +40,14 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <div>
+      <Switch>
+        <Route path="/room/:name" component={Game} />
         <Home>
-          <Route exact path="/" component={InitialScreen}/>
+          <Route exact path="/initial-screen" component={InitialScreen}/>
           <Route exact path="/new-room" component={NewRoom}/>
         </Home>
-        <Route path="/game" component={Game}/>
-      </div>
+        <Route exact path="/" component={() => <Redirect to="/initial-screen" />}/>
+      </Switch>
     </ConnectedRouter>
   </Provider>,
   document.getElementById('root')

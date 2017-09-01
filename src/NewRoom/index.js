@@ -2,7 +2,8 @@ import React from 'react'
 import firebase from 'firebase'
 import { compose, withProps, withStateHandlers, withHandlers } from 'recompose'
 
-import withCollection from '../utils/with-collection'
+import withCollection from '../HOCs/with-collection'
+import withCurrentUser from '../HOCs/with-current-user'
 
 import Space from '../components/Space'
 import TextInput from '../components/TextInput'
@@ -13,7 +14,8 @@ import Label from '../components/Label'
 import Form from '../components/Form'
 
 const enhance = compose(
-  withProps(withCollection(firebase, 'rooms')),
+  withCurrentUser(firebase),
+  withCollection(firebase, 'rooms'),
   withStateHandlers(
     () => ({
       words: [],
@@ -31,8 +33,20 @@ const enhance = compose(
     }
   ),
   withHandlers({
-    onSubmit: ({ rooms, name, words, timeToDraw, numberOfUsers }) => () =>
-      rooms.persist(name, { words, timeToDraw, numberOfUsers })
+    onSubmit: ({
+      currentUser,
+      rooms,
+      name,
+      words,
+      timeToDraw,
+      numberOfUsers
+    }) => () => rooms.persist(name, {
+      owner: currentUser().id,
+      users: [currentUser()],
+      words,
+      timeToDraw,
+      numberOfUsers
+    })
   })
 )
 
