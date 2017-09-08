@@ -17,7 +17,7 @@ const reducer = handleActions({
       ...state,
       players: {
         ...state.players,
-        [payload.id]: payload
+        [payload.uid]: payload
       }
     }
   }

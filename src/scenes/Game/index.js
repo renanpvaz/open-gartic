@@ -41,7 +41,7 @@ class Game extends React.Component {
           <Space height="60vh" width="10vw">
             <Sidebar>
               <Flex.Row alignItems="start">
-                <Ranking users={this.props.players} />
+                <Ranking players={this.props.players} />
                 <Palette
                   onSelect={color => this.setState({ brushColor: color })}
                   colors={[

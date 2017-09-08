@@ -11,7 +11,7 @@ const Ranking = ({ players = [] }) => {
             height: 48,
             backgroundColor: '#aaa',
             borderRadius: '.2rem',
-            backgroundImage: `url(${`https://api.adorable.io/avatars/48/${player.id}.png`})`
+            backgroundImage: `url(${`https://api.adorable.io/avatars/48/${player.uid}.png`})`
           }}>
           </li>
         ))
