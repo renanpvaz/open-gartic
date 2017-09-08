@@ -1,4 +1,6 @@
 import React from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import firebase from 'firebase'
 import { compose, lifecycle } from 'recompose'
 
@@ -13,24 +15,10 @@ import Space from '../../components/Space'
 import SketchPad from '../../components/SketchPad'
 import Flex from '../../components/Flex'
 
+import { findRoom, joinRoom, listenForNewPlayers } from '../../store/game/thunks'
+
 const enhance = compose(
   withCurrentUser(firebase),
-  withCollection(firebase, 'rooms'),
-  lifecycle({
-    componentDidMount() {
-      const { rooms, match, currentUser } = this.props
-
-      rooms.findOne(match.params.name).then(config => {
-        const isOwner = config.owner === currentUser().id
-
-        this.setState({
-          ...config,
-          isOwner,
-          users: isOwner ? config.users : [...config.users, currentUser()]
-        }, () => console.log(this.state))
-      })
-    }
-  })
 )
 
 class Game extends React.Component {
@@ -44,7 +32,16 @@ class Game extends React.Component {
     }
   }
 
+  componentDidMount() {
+    const roomName = this.props.match.params.name
+
+    this.props.dispatch(findRoom(roomName))
+    this.props.dispatch(joinRoom(roomName, firebase.auth().currentUser))
+    this.props.dispatch(listenForNewPlayers())
+  }
+
   render() {
+    console.log(this.props)
     return (
       <main className="game">
         <Flex.Row>
@@ -78,4 +75,6 @@ class Game extends React.Component {
   }
 }
 
-export default enhance(Game)
+export default connect(
+  state => state
+)(Game)

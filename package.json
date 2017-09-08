@@ -14,7 +14,7 @@
     "react-scripts": "1.0.11",
     "recompose": "^0.25.0",
     "redux": "^3.7.2",
-    "redux-saga": "^0.15.6",
+    "redux-actions": "^2.2.1",
     "reselect": "^3.0.1"
   },
   "scripts": {

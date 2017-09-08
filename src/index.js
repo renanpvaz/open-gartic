@@ -2,22 +2,24 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import * as firebase from 'firebase'
 
+import thunk from 'redux-thunk';
 import { createStore, combineReducers, applyMiddleware } from 'redux'
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
 import { Provider } from 'react-redux'
+import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
 
 import createHistory from 'history/createBrowserHistory'
 import { Route, Redirect, Switch } from 'react-router'
 
-import './index.css'
 import Game from './scenes/Game'
 import Home from './scenes/Home'
 import InitialScreen from './scenes/InitialScreen'
 import NewRoom from './scenes/NewRoom'
+import reducers from './store/reducers'
+
+import './index.css'
 import registerServiceWorker from './registerServiceWorker'
 
 const history = createHistory()
-const middleware = routerMiddleware()
 
 firebase.initializeApp({
   apiKey: "AIzaSyAQ-8ciFkzyRkCtoxsflrPyGjMRVMOd93Q",
@@ -28,13 +30,17 @@ firebase.initializeApp({
   messagingSenderId: "83017664694"
 })
 
-firebase.auth().signInAnonymously()
+firebase.auth().signInAnonymously().then(() => console.log('cu'))
 
 const store = createStore(
   combineReducers({
-    router: routerReducer
+    router: routerReducer,
+    ...reducers
   }),
-  applyMiddleware(middleware)
+  applyMiddleware(
+    routerMiddleware(history),
+    thunk
+  )
 )
 
 ReactDOM.render(
