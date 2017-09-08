@@ -42,6 +42,7 @@ const enhance = compose(
       numberOfUsers
     }) => () => rooms.persist(name, {
       owner: currentUser().id,
+      status: 'IDLE',
       words,
       timeToDraw,
       numberOfUsers

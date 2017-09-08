@@ -1,5 +1,7 @@
-import gameReducer from './game/'
+import authReducer from './auth'
+import roomReducer from './room'
 
 export default {
-  game: gameReducer
+  auth: authReducer,
+  room: roomReducer
 }

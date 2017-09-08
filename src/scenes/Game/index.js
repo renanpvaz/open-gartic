@@ -15,7 +15,7 @@ import Space from '../../components/Space'
 import SketchPad from '../../components/SketchPad'
 import Flex from '../../components/Flex'
 
-import { findRoom, joinRoom, listenForNewPlayers } from '../../store/game/thunks'
+import { findRoom, joinRoom, listenForNewPlayers } from '../../store/room/actions'
 
 const enhance = compose(
   withCurrentUser(firebase),
