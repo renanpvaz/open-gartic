@@ -1,12 +1,14 @@
 import React from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { authenticate, listenForAuthState } from '../../store/auth/actions'
+import { isLogged } from '../../store/auth'
+import * as actions from '../../store/auth/actions'
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.dispatch(listenForAuthState())
-    this.props.dispatch(authenticate())
+    this.props.listenForAuthState()
+    this.props.authenticate()
   }
 
   render() {
@@ -20,5 +22,6 @@ class App extends React.Component {
 }
 
 export default connect(
-  state => ({ ...state.auth })
+  state => ({ isLogged: isLogged(state) }),
+  dispatch => bindActionCreators(actions, dispatch)
 )(App)

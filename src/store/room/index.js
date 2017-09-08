@@ -17,10 +17,18 @@ const reducer = handleActions({
       ...state,
       players: {
         ...state.players,
-        [payload.uid]: payload
+        [payload.id]: payload
       }
     }
   }
 }, initialState)
+
+const getRoom = state => state.room
+const getPlayers = state => Object.values(state.room.players)
+
+export {
+  getRoom,
+  getPlayers,
+}
 
 export default reducer

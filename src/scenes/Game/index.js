@@ -1,11 +1,6 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import firebase from 'firebase'
-import { compose, lifecycle } from 'recompose'
-
-import withCollection from '../../HOCs/with-collection'
-import withCurrentUser from '../../HOCs/with-current-user'
 
 import Sidebar from '../../components/Sidebar'
 import ChatBox from '../../components/ChatBox'
@@ -15,11 +10,9 @@ import Space from '../../components/Space'
 import SketchPad from '../../components/SketchPad'
 import Flex from '../../components/Flex'
 
-import { findRoom, joinRoom, listenForNewPlayers } from '../../store/room/actions'
-
-const enhance = compose(
-  withCurrentUser(firebase),
-)
+import { getLoggedUser } from '../../store/auth'
+import { getRoom, getPlayers } from '../../store/room'
+import * as actions from '../../store/room/actions'
 
 class Game extends React.Component {
   constructor(props) {
@@ -35,9 +28,9 @@ class Game extends React.Component {
   componentDidMount() {
     const roomName = this.props.match.params.name
 
-    this.props.dispatch(findRoom(roomName))
-    this.props.dispatch(joinRoom(roomName, firebase.auth().currentUser))
-    this.props.dispatch(listenForNewPlayers())
+    this.props.findRoom(roomName)
+    this.props.joinRoom(roomName, this.props.loggedUser)
+    this.props.listenForNewPlayers()
   }
 
   render() {
@@ -48,7 +41,7 @@ class Game extends React.Component {
           <Space height="60vh" width="10vw">
             <Sidebar>
               <Flex.Row alignItems="start">
-                <Ranking users={this.props.users} />
+                <Ranking users={this.props.players} />
                 <Palette
                   onSelect={color => this.setState({ brushColor: color })}
                   colors={[
@@ -76,5 +69,10 @@ class Game extends React.Component {
 }
 
 export default connect(
-  state => state
+  state => ({
+    loggedUser: getLoggedUser(state),
+    room: getRoom(state),
+    players: getPlayers(state),
+  }),
+  dispatch => bindActionCreators(actions, dispatch)
 )(Game)

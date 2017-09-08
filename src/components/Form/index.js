@@ -1,8 +1,6 @@
 import React from 'react'
 
 import Space from '../Space'
-import TextInput from '../TextInput'
-import Button from '../Button'
 import Flex from '../Flex'
 
 const Form = ({ children, primaryAction, secondaryAction }) => (

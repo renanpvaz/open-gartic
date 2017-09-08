@@ -5,7 +5,8 @@ import * as firebase from 'firebase'
 import thunk from 'redux-thunk';
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
+import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux'
+import logger from 'redux-logger'
 
 import createHistory from 'history/createBrowserHistory'
 import { Route, Redirect, Switch } from 'react-router'
@@ -40,7 +41,8 @@ const store = createStore(
   }),
   applyMiddleware(
     routerMiddleware(history),
-    thunk
+    thunk,
+    logger
   )
 )
 

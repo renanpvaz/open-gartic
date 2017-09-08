@@ -9,10 +9,20 @@ const initialState = {
 const reducer = handleActions({
   [updateLoggedUser](state, { payload }) {
     return {
-      isLogged: payload,
-      logged: !!payload
+      loggedUser: payload,
+      isLogged: !!payload
     }
   },
 }, initialState)
+
+const getLoggedUser = state => state.auth.loggedUser
+const getLoggedUserUid = state => getLoggedUser(state).uid
+const isLogged = state => state.auth.isLogged
+
+export {
+  isLogged,
+  getLoggedUser,
+  getLoggedUserUid
+}
 
 export default reducer
