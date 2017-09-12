@@ -32,7 +32,9 @@ class InitialScreen extends React.Component {
           <TextInput big placeholder="username" value="" />
         </Space>
         <Space pY="1">
-          <Button onClick={() => this.props.dispatch(push(`room/${this.state.room}`))} primary fit size="xl">join room</Button>
+          <Button onClick={() => this.props.dispatch(push(`room/${this.state.room}`))} primary fit size="xl">
+            join room
+          </Button>
         </Space>
         <Space pY="1">
           <Button fit size="xl">create room</Button>

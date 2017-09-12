@@ -7,7 +7,7 @@ import ChatBox from '../../components/ChatBox'
 import Palette from '../../components/Palette'
 import Ranking from '../../components/Ranking'
 import Space from '../../components/Space'
-import SketchPad from '../../components/SketchPad'
+import Sketchpad from '../../components/Sketchpad'
 import Flex from '../../components/Flex'
 
 import { getLoggedUser } from '../../store/auth'
@@ -21,7 +21,7 @@ class Game extends React.Component {
     this.el = {}
     this.state = {
       users: [],
-      brushColor: 'black'
+      color: 'black'
     }
   }
 
@@ -48,7 +48,7 @@ class Game extends React.Component {
               <Flex.Row alignItems="start">
                 <Ranking players={this.props.players} />
                 <Palette
-                  onSelect={color => this.setState({ brushColor: color })}
+                  onSelect={color => this.setState({ color })}
                   colors={[
                     'black',
                     'white',
@@ -62,7 +62,11 @@ class Game extends React.Component {
             </Sidebar>
           </Space>
           <Space innerRef={ref => (this.el = ref)} width="100%" height="60vh">
-            <SketchPad brushColor={this.state.brushColor} height={this.el.height} />
+            <Sketchpad
+              color={this.state.color}
+              height={this.el.offsetHeight}
+              width={this.el.offsetWidth}
+            />
           </Space>
         </Flex.Row>
         <Space height="40vh" width="100vw">
