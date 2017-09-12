@@ -3,6 +3,8 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 
+import omit from '../../util/omit'
+
 import TextInput from '../../components/TextInput'
 import Button from '../../components/Button'
 import Tag from '../../components/Tag'
@@ -43,12 +45,7 @@ class NewRoom extends React.Component {
   }
 
   handleSubmit() {
-    this.props.createRoom({
-      words: this.state.words,
-      name: this.state.name,
-      timeToDraw: this.state.timeToDraw,
-      numberOfUsers: this.state.numberOfUsers,
-    }).then(
+    this.props.createRoom(omit(['newWord'], this.state)).then(
       () => this.props.goToRoom(this.state.name)
     )
   }

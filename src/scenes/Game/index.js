@@ -29,12 +29,17 @@ class Game extends React.Component {
     const roomName = this.props.match.params.name
 
     this.props.findRoom(roomName)
-    this.props.joinRoom(roomName, this.props.loggedUser)
-    this.props.listenForNewPlayers()
+    this.props.joinRoom(roomName)
+    this.props.listenForPlayerConnections(roomName)
+
+    window.addEventListener('beforeunload', this.props.leaveRoom)
+  }
+
+  componentWillUnmount() {
+    this.props.leaveRoom()
   }
 
   render() {
-    console.log(this.props)
     return (
       <main className="game">
         <Flex.Row>

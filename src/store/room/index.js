@@ -1,5 +1,7 @@
 import { handleActions } from 'redux-actions'
-import { loadRoom, playerJoined } from './actions'
+import { loadRoom, playerJoined, playerLeft } from './actions'
+
+import omit from '../../util/omit'
 
 const initialState = {
   players: {},
@@ -19,6 +21,12 @@ const reducer = handleActions({
         ...state.players,
         [payload.uid]: payload
       }
+    }
+  },
+  [playerLeft](state, { payload }) {
+    return {
+      ...state,
+      players: omit(payload, state.players)
     }
   }
 }, initialState)
