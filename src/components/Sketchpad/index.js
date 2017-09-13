@@ -59,6 +59,17 @@ class Sketchpad extends React.Component {
   redraw() {
     this.props.strokes.forEach(this.makeStroke)
   }
+  // 
+  // componentWillReceiveProps({ position, sketching }) {
+  //   const { color, size } = this.props
+  //
+  //   if (sketching) {
+  //     this.draw(
+  //       { start: this.props.position, end: position },
+  //       { color, size }
+  //     )
+  //   }
+  // }
 
   handleMouseDown(e) {
     this.setState({

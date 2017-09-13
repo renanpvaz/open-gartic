@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Flex = ({
-  Tag = 'div',
+  tag: Tag = 'div',
   className,
   children,
   flexDirection = 'initial',

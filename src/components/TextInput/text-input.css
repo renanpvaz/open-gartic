@@ -5,9 +5,13 @@
   font-family: inherit;
   font-size: inherit;
   color: inherit;
-  border: 2px solid rgb(202, 196, 201);
-  border-radius: 3px;
+  border: 2px solid rgba(160,160,162,.7);
+  border-radius: 5px;
   box-sizing: border-box;
+}
+
+.text-input:focus {
+  border-color: #717274;
 }
 
 .text-input.text-input--big {

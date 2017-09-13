@@ -6,14 +6,13 @@ const Ranking = ({ players = [] }) => {
       {
         players.map((player, i) => (
           <li style={{
-            marginBottom: 16,
-            width: 48,
-            height: 48,
+            margin: 16,
+            width: 40,
+            height: 40,
             backgroundColor: '#aaa',
             borderRadius: '.2rem',
-            backgroundImage: `url(${`https://api.adorable.io/avatars/48/${player.uid}.png`})`
-          }}>
-          </li>
+            backgroundColor:'rgb(231, 231, 231)'
+          }} />
         ))
       }
     </ul>

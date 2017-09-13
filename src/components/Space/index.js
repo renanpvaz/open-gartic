@@ -8,14 +8,13 @@ const points = {
 }
 
 const Space = ({
-  Tag = 'div',
+  tag: Tag = 'div',
+  onClick,
   children,
   innerRef,
-  p,
   pX,
   pY,
   pB,
-  m,
   mX,
   mY,
   mB,
@@ -25,12 +24,15 @@ const Space = ({
   fit,
 }) => (
   <Tag
+    onClick={onClick}
     ref={innerRef}
     style={{
       padding: `${points[pY] || 0} ${points[pX] || 0} ${points[pB]}`,
       margin: `${points[mY] || 0} ${points[mX] || 0} ${points[mB]}`,
       width: fit ? '100%' : width,
-      height,
+      height: height || size,
+      minWidth: size,
+      minHeight: size,
       maxWidth: size,
       maxHeight: size,
     }}
