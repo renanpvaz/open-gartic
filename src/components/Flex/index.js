@@ -8,6 +8,8 @@ const Flex = ({
   alignItems = 'initial',
   justifyContent = 'initial',
   flexWrap = 'initial',
+  width,
+  height,
 }) => (
   <Tag
     className={className}
@@ -17,6 +19,8 @@ const Flex = ({
       alignItems,
       justifyContent,
       flexWrap,
+      width,
+      height,
     }}
   >
     {children}

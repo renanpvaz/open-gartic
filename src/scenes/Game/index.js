@@ -4,13 +4,11 @@ import { connect } from 'react-redux'
 
 import Sidebar from '../../components/Sidebar'
 import ChatBox from '../../components/ChatBox'
-import Palette from '../../components/Palette'
 import Ranking from '../../components/Ranking'
+import ToolsSidebar from '../../components/ToolsSidebar'
 import Space from '../../components/Space'
 import Sketchpad from '../../components/Sketchpad'
 import Flex from '../../components/Flex'
-import RangeSlider from '../../components/RangeSlider'
-import Label from '../../components/Label'
 
 import { getLoggedUser } from '../../store/auth'
 import { getRoom, getPlayers } from '../../store/room'
@@ -35,7 +33,9 @@ class Game extends React.Component {
     this.props.joinRoom(roomName)
     this.props.listenForPlayerConnections(roomName)
 
-    window.addEventListener('beforeunload', this.props.leaveRoom)
+    window.addEventListener('beforeunload', () => {
+      this.props.leaveRoom() // FIXME anon window bug
+    })
   }
 
   componentWillUnmount() {
@@ -46,39 +46,16 @@ class Game extends React.Component {
     return (
       <main className="game">
         <Flex.Row>
-          <Space height="60vh" width="20vw">
+          <Space height="60vh">
             <Sidebar>
-              <Flex.Row alignItems="start">
-                <Ranking players={this.props.players} />
-                <Flex.Column>
-                  <Palette
-                    onSelect={color => this.setState({ color })}
-                    colors={[
-                      'black',
-                      'white',
-                      '#DC5960',
-                      '#08c',
-                      '#ffd248',
-                      '#26968c',
-                    ]}
-                  />
-                  <Flex.Row alignItems="center" justifyContent="space-around">
-                    <RangeSlider
-                      value={this.state.size}
-                      onChange={({ value }) => this.setState({ size: value })}
-                      min="1"
-                      max="32"
-                    />
-                    {`${this.state.size || 1}px`}
-                  </Flex.Row>
-                </Flex.Column>
-              </Flex.Row>
+              <Ranking players={this.props.players} />
+              <ToolsSidebar />
             </Sidebar>
           </Space>
           <Space innerRef={ref => (this.el = ref)} width="100%" height="60vh">
             <Sketchpad
-              size={this.state.size}
-              color={this.state.color}
+              size={this.props.game.size}
+              color={this.props.game.color}
               height={this.el.offsetHeight}
               width={this.el.offsetWidth}
             />
@@ -97,6 +74,7 @@ export default connect(
     loggedUser: getLoggedUser(state),
     room: getRoom(state),
     players: getPlayers(state),
+    game: state.game // FIXME use selector
   }),
   dispatch => bindActionCreators(actions, dispatch)
 )(Game)

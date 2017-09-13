@@ -9,7 +9,7 @@ const Palette = ({ colors, onSelect }) => (
   <Flex.Wrap className="palette">
     {
       colors.map(color => (
-        <Space key={color} padding={8} size={32}>
+        <Space key={color} padding={2}>
           <button
             onClick={() => onSelect(color)}
             style={{ backgroundColor: color }}

@@ -11,8 +11,8 @@ const initialState = {
 }
 
 const reducer = handleActions({
-  [loadRoom](state, { payload: { room } }) {
-    return { ...state, ...room }
+  [loadRoom](state, { payload }) {
+    return { ...state, ...payload }
   },
   [playerJoined](state, { payload }) {
     return {

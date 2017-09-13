@@ -4,7 +4,7 @@ import { Players, Rooms } from '../collections'
 import { getLoggedUserUid } from '../auth'
 
 const { loadRoom, playerJoined, playerLeft } = createActions({
-  LOAD_ROOM: room => ({ room }),
+  LOAD_ROOM: room => room,
   PLAYER_JOINED: newPlayer => newPlayer,
   PLAYER_LEFT: uid => uid,
 })
@@ -17,7 +17,7 @@ const createRoom = newRoom => (dispatch, getState) => Rooms.persist(
   {
     ...newRoom,
     owner: getLoggedUserUid(getState()),
-    status: 'IDLE',
+    status: 'IDLE', // FIXME move to constants module
   }
 )
 

@@ -1,0 +1,7 @@
+.tools-sidebar {
+  height: 100%;
+  background-color: #f4f5f7;
+  border-right: 1px solid #e5e5e5;
+  padding: 24px;
+  box-sizing: border-box;
+}

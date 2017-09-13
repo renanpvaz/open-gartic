@@ -9,7 +9,7 @@ const createCollection = (
     provider.database()
       .ref(`${path}/${key}`)
       .once('value')
-      .then(result => result.val())
+      .then(result => ({ ...result.val(), key: result.key }))
   ),
   ref: () => provider.database().ref(path),
   listenFor: (event, callback) => provider.database().ref(path)

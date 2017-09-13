@@ -5,6 +5,7 @@ const { updateLoggedUser } = createActions({
   UPDATE_LOGGED_USER: loggedUser => ({ uid: loggedUser.uid }),
 })
 
+// FIXME use auth provider abstraction
 const authenticate = () => () => firebase.auth().signInAnonymously()
 
 const listenForAuthState = () => dispatch => firebase.auth().onAuthStateChanged(

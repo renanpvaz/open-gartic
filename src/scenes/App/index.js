@@ -8,7 +8,7 @@ import * as actions from '../../store/auth/actions'
 class App extends React.Component {
   componentDidMount() {
     this.props.listenForAuthState()
-    this.props.authenticate()
+    this.props.isLogged || this.props.authenticate()
   }
 
   render() {
