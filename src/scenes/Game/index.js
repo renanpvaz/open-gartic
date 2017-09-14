@@ -7,6 +7,7 @@ import ChatBox from '../../components/ChatBox'
 import Ranking from '../../components/Ranking'
 import ToolsSidebar from '../../components/ToolsSidebar'
 import Space from '../../components/Space'
+import DrawingBoard from '../../components/DrawingBoard'
 import Sketchpad from '../../components/Sketchpad'
 import Flex from '../../components/Flex'
 
@@ -45,21 +46,14 @@ class Game extends React.Component {
   render() {
     return (
       <main className="game">
-        <Flex.Row>
+        <Flex.Row width="100vw">
           <Space height="60vh">
             <Sidebar>
               <Ranking players={this.props.players} />
               <ToolsSidebar />
             </Sidebar>
           </Space>
-          <Space innerRef={ref => (this.el = ref)} width="100%" height="60vh">
-            <Sketchpad
-              size={this.props.game.size}
-              color={this.props.game.color}
-              height={this.el.offsetHeight}
-              width={this.el.offsetWidth}
-            />
-          </Space>
+          {this.props.room.key && <DrawingBoard />}
         </Flex.Row>
         <Space height="40vh" width="100vw">
           <ChatBox />

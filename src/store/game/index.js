@@ -1,11 +1,12 @@
 import { handleActions } from 'redux-actions'
 
-import { setColor, setPosition, setSize } from './actions'
+import { setColor, setPosition, setSize, setDrawingStatus } from './actions'
 
 const initialState = {
   color: 'black',
   position: { x: 0, y: 0 },
-  size: 32
+  size: 32,
+  drawing: false
 }
 
 const reducer = handleActions({
@@ -17,6 +18,9 @@ const reducer = handleActions({
   },
   [setSize](state, { payload }) {
     return { ...state, size: payload }
+  },
+  [setDrawingStatus](state, { payload }) {
+    return { ...state, drawing: payload }
   },
 }, initialState)
 

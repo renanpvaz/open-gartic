@@ -4,29 +4,6 @@ import ReactDOM from 'react-dom'
 import './sketchpad.css'
 
 class Sketchpad extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.handleMouseDown = this.handleMouseDown.bind(this)
-    this.handleMouseUp = this.handleMouseUp.bind(this)
-    this.handleMouseMove = this.handleMouseMove.bind(this)
-
-    this.state = {
-      strokes: [],
-      lastPosition: { x: 0, y: 0 },
-      currentStroke: {
-        lines: []
-      }
-    }
-  }
-
-  getPosition(e) {
-    return {
-      x: e.pageX - this.canvas.offsetLeft,
-      y: e.pageY - this.canvas.offsetTop
-    }
-  }
-
   makeLine({ start, end }, { color, size }, compositeOperation) {
     this.context.save()
     this.context.lineJoin = 'round'
@@ -59,76 +36,36 @@ class Sketchpad extends React.Component {
   redraw() {
     this.props.strokes.forEach(this.makeStroke)
   }
-  // 
-  // componentWillReceiveProps({ position, sketching }) {
-  //   const { color, size } = this.props
-  //
-  //   if (sketching) {
-  //     this.draw(
-  //       { start: this.props.position, end: position },
-  //       { color, size }
-  //     )
-  //   }
-  // }
 
-  handleMouseDown(e) {
-    this.setState({
-      sketching: true,
-      lastPosition: this.getPosition(e),
-      currentStroke: {
-        color: this.props.color,
-        size: this.props.size,
-        lines: [],
-      }
-    })
-  }
+  componentWillReceiveProps({ position, sketching }) {
+    const { color, size, position: lastPosition } = this.props
+    const positionHasChanged =
+      position.x !== lastPosition.x || position.y !== lastPosition.y
 
-  handleMouseMove(e) {
-    const { sketching, lastPosition, currentStroke } = this.state
-    const { color, size } = this.props
 
-    if (sketching) {
-      const currentPosition = this.getPosition(e)
-
+    if (sketching && positionHasChanged) {
       this.draw(
-        { start: lastPosition, end: currentPosition },
+        { start: lastPosition, end: position },
         { color, size }
       )
-
-      this.setState({
-        lastPosition: currentPosition,
-        currentStroke: {
-          ...currentStroke,
-          lines: [...currentStroke.lines, {
-            start: lastPosition,
-            end: currentPosition,
-          }]
-        }
-      })
     }
   }
 
-  handleMouseUp() {
-    this.setState({
-      sketching: false,
-      strokes: [...this.state.strokes, this.state.currentStroke]
-    })
-  }
-
   render() {
-    return this.props.height ? (
+    return (
       <canvas
+        className="sketchpad"
         ref={canvas => (
           (this.canvas = canvas) && (this.context = canvas.getContext('2d'))
         )}
-        className="sketchpad"
         height={this.props.height}
         width={this.props.width}
-        onMouseDown={this.handleMouseDown}
-        onMouseMove={this.handleMouseMove}
-        onMouseUp={this.handleMouseUp}
+        onMouseDown={this.props.onMouseDown}
+        onMouseMove={this.props.onMouseMove}
+        onMouseUp={this.props.onMouseUp}
+        onMouseLeave={this.props.onMouseLeave}
       />
-    ) : null
+    )
   }
 }
 

@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux'
-import logger from 'redux-logger'
+import { createLogger } from 'redux-logger'
 
 import createHistory from 'history/createBrowserHistory'
 import { Route, Redirect, Switch } from 'react-router'
@@ -42,7 +42,9 @@ const store = createStore(
   applyMiddleware(
     routerMiddleware(history),
     thunk,
-    logger
+    createLogger({
+      predicate: (getState, action) => action.type !== 'SET_POSITION'
+    })
   )
 )
 
