@@ -8,7 +8,6 @@ import Ranking from '../../components/Ranking'
 import ToolsSidebar from '../../components/ToolsSidebar'
 import Space from '../../components/Space'
 import DrawingBoard from '../../components/DrawingBoard'
-import Sketchpad from '../../components/Sketchpad'
 import Flex from '../../components/Flex'
 
 import { getLoggedUser } from '../../store/auth'

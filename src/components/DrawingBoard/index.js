@@ -1,10 +1,25 @@
 import React from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import Space from '../Space'
 import Sketchpad from '../Sketchpad'
 
-import { updatePosition, updateDrawingStatus, listenForDrawingUpdates } from '../../store/game/actions'
+import {
+  updatePosition,
+  startDrawing,
+  stopDrawing,
+  listenForDrawingUpdates
+} from '../../store/sketch/actions'
+
+import {
+  isDrawing,
+  getColor,
+  getSize,
+  getPosition,
+} from '../../store/sketch'
+
+import { isOwner } from '../../store/room'
 
 class DrawingBoard extends React.Component {
   constructor(props) {
@@ -34,22 +49,21 @@ class DrawingBoard extends React.Component {
 
   componentDidMount() {
     if (!this.props.isOwner)
-      this.props.dispatch(listenForDrawingUpdates())
+      this.props.listenForDrawingUpdates()
   }
 
   handleMouseDown(e) {
-    this.props.dispatch(updatePosition(this.getPosition(e)))
-    this.props.dispatch(updateDrawingStatus(true))
+    this.props.updatePosition(this.getPosition(e))
+    this.props.startDrawing()
 
     this.setState({ lines: [] })
   }
 
   handleMouseMove(e) {
     const { sketching, position: lastPosition, lines } = this.state
-    const { color, size } = this.props
     const currentPosition = this.getPosition(e)
 
-    this.props.dispatch(updatePosition(currentPosition))
+    this.props.updatePosition(currentPosition)
 
     if (sketching) {
       this.setState({
@@ -62,7 +76,7 @@ class DrawingBoard extends React.Component {
   }
 
   handleMouseUp() {
-    this.props.dispatch(updateDrawingStatus(false))
+    this.props.stopDrawing()
 
     this.setState({
       strokes: [...this.state.strokes, {
@@ -74,7 +88,7 @@ class DrawingBoard extends React.Component {
   }
 
   handleMouseLeave() {
-    this.props.dispatch(updateDrawingStatus(false))
+    this.props.stopDrawing()
   }
 
   getContainerRef(container) {
@@ -108,10 +122,16 @@ class DrawingBoard extends React.Component {
 
 export default connect(
   state => ({
-    isOwner: state.auth.isLogged && (state.room.owner === state.auth.loggedUser.uid),
-    position: state.game.position,
-    size: state.game.size,
-    color: state.game.color,
-    isDrawing: state.game.drawing,
-  })
+    isOwner: isOwner(state),
+    position: getPosition(state),
+    size: getSize(state),
+    color: getColor(state),
+    isDrawing: isDrawing(state),
+  }),
+  dispatch => bindActionCreators({
+    startDrawing,
+    stopDrawing,
+    updatePosition,
+    listenForDrawingUpdates,
+  }, dispatch)
 )(DrawingBoard)

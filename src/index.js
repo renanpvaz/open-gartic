@@ -2,7 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import * as firebase from 'firebase'
 
-import thunk from 'redux-thunk';
+import thunk from 'redux-thunk'
+import multi from 'redux-multi'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux'
@@ -42,6 +43,7 @@ const store = createStore(
   applyMiddleware(
     routerMiddleware(history),
     thunk,
+    multi,
     createLogger({
       predicate: (getState, action) => action.type !== 'SET_POSITION'
     })
