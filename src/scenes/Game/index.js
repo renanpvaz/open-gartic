@@ -67,7 +67,6 @@ export default connect(
     loggedUser: getLoggedUser(state),
     room: getRoom(state),
     players: getPlayers(state),
-    game: state.game // FIXME use selector
   }),
   dispatch => bindActionCreators(actions, dispatch)
 )(Game)

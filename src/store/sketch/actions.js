@@ -44,14 +44,14 @@ const stopDrawing = () => dispatch =>
   dispatch(updateDrawingStatus(sketchStatus.IDLE))
 
 const listenForDrawingUpdates = () => (dispatch, getState) => {
-  const { color, status, position, size } = getSketch(getState())
-
   Rooms.sub(getKey(getState())).listenFor('child_changed', update => {
+    const { color, status, position, size } = getSketch(getState())
+
     if (update.color !== color)
       dispatch(setColor(update.color))
 
-    // if (update.size !== size)
-    //   dispatch(setSize(update.size))
+    if (update.size !== size)
+      dispatch(setSize(update.size))
 
     if (update.position.x !== position.x && update.position.y !== position.y)
       dispatch(setPosition(update.position))
