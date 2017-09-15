@@ -5,10 +5,11 @@ import { connect } from 'react-redux'
 import Sidebar from '../../components/Sidebar'
 import ChatBox from '../../components/ChatBox'
 import Ranking from '../../components/Ranking'
-import ToolsSidebar from '../../components/ToolsSidebar'
 import Space from '../../components/Space'
-import DrawingBoard from '../../components/DrawingBoard'
 import Flex from '../../components/Flex'
+
+import ToolsSidebar from '../../containers/ToolsSidebar'
+import DrawingBoard from '../../containers/DrawingBoard'
 
 import { getLoggedUser } from '../../store/auth'
 import { getRoom, getPlayers } from '../../store/room'

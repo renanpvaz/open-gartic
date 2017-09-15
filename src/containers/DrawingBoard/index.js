@@ -2,8 +2,8 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import Space from '../Space'
-import Sketchpad from '../Sketchpad'
+import Space from '../../components/Space'
+import Sketchpad from '../../components/Sketchpad'
 
 import {
   updatePosition,

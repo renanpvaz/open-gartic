@@ -2,9 +2,9 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import Palette from '../Palette'
-import Flex from '../Flex'
-import RangeSlider from '../RangeSlider'
+import Palette from '../../components/Palette'
+import Flex from '../../components/Flex'
+import RangeSlider from '../../components/RangeSlider'
 
 import { getSize } from '../../store/sketch'
 import { updateSize, updateColor } from '../../store/sketch/actions'
