@@ -24,7 +24,11 @@ const createRoom = newRoom => (dispatch, getState) => Rooms.persist(
 const joinRoom = room => (dispatch, getState) => {
   const uid = getLoggedUserUid(getState())
 
-  return Players.persist(uid, { uid, currentRoom: room })
+  return Players.persist(uid, {
+    uid,
+    joinedAt: (new Date()).getTime(),
+    currentRoom: room
+  })
 }
 
 const leaveRoom = () => (dispatch, getState) =>
