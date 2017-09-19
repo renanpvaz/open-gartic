@@ -7,9 +7,7 @@ const TextInput = ({
   name,
   value = '',
   onChange,
-  preffix = '',
   placeholder,
-  autoFocus,
   onPressEnter,
   big
 }) => (

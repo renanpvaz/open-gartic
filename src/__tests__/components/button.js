@@ -1,5 +1,5 @@
 import React from 'react'
-import { shallow, mount, render } from 'enzyme'
+import { shallow } from 'enzyme'
 import { expect } from 'chai'
 
 import Button from '../../components/Button'
@@ -13,31 +13,31 @@ describe('<Button />', () => {
     expect(shallow(<Button />).find('button')).to.have.length(1)
   })
 
-  it('always has \'button\' className', () => {
-    expect(shallow(<Button />).props().className).to.contain('button')
+  it('always has "button" className', () => {
+    expect(shallow(<Button />).hasClass('button')).to.equal(true)
   })
 
   it('defaults to medium size', () => {
-    expect(shallow(<Button />).props().className).to.contain('button--m')
+    expect(shallow(<Button />).hasClass('button--m')).to.equal(true)
   })
 
-  it('adds \'fit\' className', () => {
-    expect(shallow(<Button fit />).props().className).to.contain('button--fit')
+  it('adds "fit" className', () => {
+    expect(shallow(<Button fit />).hasClass('button--fit')).to.equal(true)
   })
 
-  it('adds \'primary\' className', () => {
-    expect(shallow(<Button primary />).props().className).to.contain('button--primary')
+  it('adds "primary" className', () => {
+    expect(shallow(<Button primary />).hasClass('button--primary')).to.equal(true)
   })
 
-  it('adds \'ghost\' className', () => {
-    expect(shallow(<Button ghost />).props().className).to.contain('button--ghost')
+  it('adds "ghost" className', () => {
+    expect(shallow(<Button ghost />).hasClass('button--ghost')).to.equal(true)
   })
 
   it('should disable button', () => {
     expect(shallow(<Button disabled />).props().disabled).to.equal(true)
   })
 
-  it('renders passed children', () => {
+  it('renders given children', () => {
     const text = 'click\'ere'
 
     expect(

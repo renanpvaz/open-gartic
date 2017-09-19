@@ -27,16 +27,12 @@ const Flex = ({
   </Tag>
 )
 
-const Column = props => <Flex {...props} flexDirection="column" />
-const Row = props => <Flex {...props} flexDirection="row" />
-const Wrap = props => <Flex {...props} flexDirection="row" flexWrap="wrap" />
-const Center = props => <Flex {...props} justifyContent="center" alignItems="center" />
-const SpaceBetween = props => <Flex {...props} flexDirection="row" justifyContent="space-between" />
+Object.assign(Flex, {
+  Column: props => <Flex {...props} flexDirection="column" />,
+  Row: props => <Flex {...props} flexDirection="row" />,
+  Wrap: props => <Flex {...props} flexDirection="row" flexWrap="wrap" />,
+  Center: props => <Flex {...props} justifyContent="center" alignItems="center" />,
+  SpaceBetween: props => <Flex {...props} flexDirection="row" justifyContent="space-between" />,
+})
 
-export default {
-  Column,
-  Row,
-  Center,
-  Wrap,
-  SpaceBetween,
-}
+export default Flex
