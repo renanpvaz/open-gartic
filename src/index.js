@@ -10,7 +10,7 @@ import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-r
 import { createLogger } from 'redux-logger'
 
 import createHistory from 'history/createBrowserHistory'
-import { Route, Redirect, Switch } from 'react-router'
+import { Route, Switch } from 'react-router'
 
 import App from './scenes/App'
 import Game from './scenes/Game'
@@ -32,8 +32,6 @@ firebase.initializeApp({
   storageBucket: "open-gartic.appspot.com",
   messagingSenderId: "83017664694"
 })
-
-firebase.auth().signInAnonymously().then(() => console.log('cu'))
 
 const store = createStore(
   combineReducers({
@@ -57,10 +55,9 @@ ReactDOM.render(
         <Switch>
           <Route path="/room/:name" component={Game} />
           <Home>
-            <Route exact path="/initial-screen" component={InitialScreen}/>
-            <Route exact path="/new-room" component={NewRoom}/>
+            <Route exact path="/" component={InitialScreen} />
+            <Route exact path="/new-room" component={NewRoom} />
           </Home>
-          <Route exact path="/" component={() => <Redirect to="/initial-screen" />}/>
         </Switch>
       </App>
     </ConnectedRouter>
