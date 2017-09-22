@@ -12,9 +12,9 @@ import Flex from '../../components/Flex'
 import Label from '../../components/Label'
 import Form from '../../components/Form'
 
-import { createRoom } from '../../store/room/actions'
+import { createGame } from '../../store/game/actions'
 
-class NewRoom extends React.Component {
+class NewGame extends React.Component {
   constructor(props) {
     super(props)
 
@@ -45,8 +45,8 @@ class NewRoom extends React.Component {
   }
 
   handleSubmit() {
-    this.props.createRoom(omit(['newWord'], this.state)).then(
-      () => this.props.goToRoom(this.state.name)
+    this.props.createGame(omit(['newWord'], this.state)).then(
+      () => this.props.goToGame(this.state.name)
     )
   }
 
@@ -66,7 +66,7 @@ class NewRoom extends React.Component {
           secondaryAction={<Button>cancel</Button>}
         >
           <Label>
-            Room name
+            Game name
             <TextInput
               name="name"
               onChange={this.handleFieldChange}
@@ -110,7 +110,7 @@ class NewRoom extends React.Component {
 export default connect(
   null,
   dispatch => bindActionCreators({
-    createRoom,
-    goToRoom: name => push(`/room/${name}`)
+    createGame,
+    goToGame: name => push(`/game/${name}`)
   }, dispatch)
-)(NewRoom)
+)(NewGame)

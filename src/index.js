@@ -53,7 +53,7 @@ ReactDOM.render(
     <ConnectedRouter history={history}>
       <App>
         <Switch>
-          <Route path="/room/:name" component={Game} />
+          <Route path="/game/:name" component={Game} />
           <Home>
             <Route exact path="/" component={InitialScreen} />
             <Route exact path="/new-room" component={NewRoom} />

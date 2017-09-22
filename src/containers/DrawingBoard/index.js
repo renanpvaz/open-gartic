@@ -19,7 +19,7 @@ import {
   getPosition,
 } from '../../store/sketch'
 
-import { isOwner } from '../../store/room'
+import { isOwner } from '../../store/game'
 
 class DrawingBoard extends React.Component {
   constructor(props) {

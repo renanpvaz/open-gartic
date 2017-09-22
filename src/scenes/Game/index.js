@@ -12,8 +12,8 @@ import ToolsSidebar from '../../containers/ToolsSidebar'
 import DrawingBoard from '../../containers/DrawingBoard'
 
 import { getLoggedUser } from '../../store/auth'
-import { getRoom, getPlayers } from '../../store/room'
-import * as actions from '../../store/room/actions'
+import { getGame, getPlayers } from '../../store/game'
+import * as actions from '../../store/game/actions'
 
 class Game extends React.Component {
   constructor(props) {
@@ -28,19 +28,19 @@ class Game extends React.Component {
   }
 
   componentDidMount() {
-    const roomName = this.props.match.params.name
+    this.gameName = this.props.match.params.name
 
-    this.props.findRoom(roomName)
-    this.props.joinRoom(roomName)
-    this.props.listenForPlayerConnections(roomName)
+    this.props.findGame(this.gameName)
+    this.props.joinGame(this.gameName)
+    this.props.listenForPlayerConnections(this.gameName)
 
     window.addEventListener('beforeunload', () => {
-      this.props.leaveRoom() // FIXME anon window bug
+      this.props.leaveGame(this.gameName) // FIXME anon window bug
     })
   }
 
   componentWillUnmount() {
-    this.props.leaveRoom()
+    this.props.leaveGame()
   }
 
   render() {
@@ -53,7 +53,7 @@ class Game extends React.Component {
               <ToolsSidebar />
             </Sidebar>
           </Space>
-          {this.props.room.key && <DrawingBoard />}
+          {this.props.game.name && <DrawingBoard />}
         </Flex.Row>
         <Space height="40vh" width="100vw">
           <ChatBox />
@@ -66,7 +66,7 @@ class Game extends React.Component {
 export default connect(
   state => ({
     loggedUser: getLoggedUser(state),
-    room: getRoom(state),
+    game: getGame(state),
     players: getPlayers(state),
   }),
   dispatch => bindActionCreators(actions, dispatch)

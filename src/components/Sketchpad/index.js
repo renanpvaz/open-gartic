@@ -41,7 +41,6 @@ class Sketchpad extends React.Component {
     const positionHasChanged =
       position.x !== lastPosition.x || position.y !== lastPosition.y
 
-
     if (sketching && positionHasChanged) {
       this.draw(
         { start: lastPosition, end: position },

@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions'
-import { loadRoom, playerJoined, playerLeft } from './actions'
+import { loadGame, playerJoined, playerLeft } from './actions'
 
 import omit from '../../util/omit'
 import { isLogged, getLoggedUserUid } from '../auth'
@@ -12,7 +12,7 @@ const initialState = {
 }
 
 const reducer = handleActions({
-  [loadRoom](state, { payload }) {
+  [loadGame](state, { payload }) {
     return { ...state, ...payload }
   },
   [playerJoined](state, { payload }) {
@@ -32,16 +32,16 @@ const reducer = handleActions({
   }
 }, initialState)
 
-const getRoom = state => state.room
-const getKey = state => getRoom(state).key
-const getPlayers = state => Object.values(state.room.players)
-const getOwner = state => getRoom(state).owner
+const getGame = state => state.game
+const getName = state => getGame(state).key
+const getPlayers = state => Object.values(getGame(state).players)
+const getOwner = state => getGame(state).owner
 const isOwner = state =>
   isLogged(state) && (getOwner(state) === getLoggedUserUid(state))
 
 export {
-  getRoom,
-  getKey,
+  getGame,
+  getName,
   getPlayers,
   getOwner,
   isOwner,
