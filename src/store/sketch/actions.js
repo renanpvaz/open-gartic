@@ -3,7 +3,7 @@ import { createActions } from 'redux-actions'
 import { sketchStatus } from '../../constants'
 
 import { Games } from '../collections'
-import { getName } from '../game'
+import { getGameName } from '../game'
 
 import { getSketch } from './index'
 
@@ -15,7 +15,7 @@ const { setSize, setColor, setPosition, setDrawingStatus } = createActions({
 })
 
 const makeUpdate = changes => (dispatch, getState) =>
-  Games.update(`${getName(getState())}/sketch`, changes)
+  Games.update(`${getGameName(getState())}/sketch`, changes)
 
 const updateSize = size => [
   setSize(size),
@@ -44,7 +44,7 @@ const stopDrawing = () => dispatch =>
   dispatch(updateDrawingStatus(sketchStatus.IDLE))
 
 const listenForDrawingUpdates = () => (dispatch, getState) => {
-  Games.child(getName(getState())).listenFor('child_changed', update => {
+  Games.child(getGameName(getState())).listenFor('child_changed', update => {
     const { color, status, position, size } = getSketch(getState())
 
     if (update.color !== color)

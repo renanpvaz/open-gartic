@@ -47,3 +47,27 @@ h6 {
 h1 {
   font-size: 3rem;
 }
+
+.m-xxs {
+  margin: .125rem
+}
+
+.m-xs {
+  margin: .25rem
+}
+
+.m-s {
+  margin: .5rem
+}
+
+.m-m {
+  margin: 1rem
+}
+
+.m-l {
+  margin: 2rem
+}
+
+.m-l {
+  margin: 4rem 
+}

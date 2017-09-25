@@ -15,14 +15,16 @@ const reducer = handleActions({
   },
 }, initialState)
 
-const getLoggedUser = state => state.auth.loggedUser
-const getLoggedUserUid = state => getLoggedUser(state).uid
+const getUser = state => state.auth.loggedUser
+const getUserUid = state => getUser(state).uid
+const getUserName = state => getUser(state).name
 const isLogged = state => state.auth.isLogged
 
 export {
   isLogged,
-  getLoggedUser,
-  getLoggedUserUid
+  getUser,
+  getUserUid,
+  getUserName,
 }
 
 export default reducer

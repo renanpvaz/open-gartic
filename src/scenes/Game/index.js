@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import Sidebar from '../../components/Sidebar'
-import ChatBox from '../../components/ChatBox'
+import GuessBox from '../../components/GuessBox'
 import Ranking from '../../components/Ranking'
 import Space from '../../components/Space'
 import Flex from '../../components/Flex'
@@ -11,7 +11,7 @@ import Flex from '../../components/Flex'
 import ToolsSidebar from '../../containers/ToolsSidebar'
 import DrawingBoard from '../../containers/DrawingBoard'
 
-import { getLoggedUser } from '../../store/auth'
+import { getUser } from '../../store/auth'
 import { getGame, getPlayers } from '../../store/game'
 import * as actions from '../../store/game/actions'
 
@@ -44,20 +44,24 @@ class Game extends React.Component {
   }
 
   render() {
+    const loaded = !!this.props.game.name
+
     return (
       <main className="game">
-        <Flex.Row width="100vw">
-          <Space height="60vh">
+        <Flex.Row width="100vw" height="100vh">
+          <Space height="100%">
             <Sidebar>
               <Ranking players={this.props.players} />
               <ToolsSidebar />
             </Sidebar>
           </Space>
-          {this.props.game.name && <DrawingBoard />}
+          <Flex.Column height="100%" width="100%">
+            {loaded && <DrawingBoard />}
+            <Space height="40vh" fit>
+              {loaded && <GuessBox />}
+            </Space>
+          </Flex.Column>
         </Flex.Row>
-        <Space height="40vh" width="100vw">
-          <ChatBox />
-        </Space>
       </main>
     )
   }
@@ -65,7 +69,7 @@ class Game extends React.Component {
 
 export default connect(
   state => ({
-    loggedUser: getLoggedUser(state),
+    loggedUser: getUser(state),
     game: getGame(state),
     players: getPlayers(state),
   }),

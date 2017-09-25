@@ -3,7 +3,7 @@ import { createActions } from 'redux-actions'
 import { gameStatus } from '../../constants'
 
 import { Players, Games } from '../collections'
-import { getLoggedUserUid } from '../auth'
+import { getUserUid } from '../auth'
 
 const { loadGame, playerJoined, playerLeft } = createActions({
   LOAD_GAME: game => game,
@@ -17,12 +17,12 @@ const findGame = name => dispatch =>
 const createGame = newGame =>
   (dispatch, getState) => Games.persist(newGame.name, {
     ...newGame,
-    owner: getLoggedUserUid(getState()),
+    owner: getUserUid(getState()),
     status: gameStatus.IDLE,
   })
 
 const joinGame = gameName => (dispatch, getState) => {
-  const uid = getLoggedUserUid(getState())
+  const uid = getUserUid(getState())
 
   return Players.child(gameName).persist(uid, {
     uid,
@@ -32,7 +32,7 @@ const joinGame = gameName => (dispatch, getState) => {
 }
 
 const leaveGame = name => (dispatch, getState) =>
-  Players.child(name).delete(getLoggedUserUid(getState()))
+  Players.child(name).delete(getUserUid(getState()))
 
 const listenForPlayerConnections = gameName => dispach =>
   Players.child(gameName)

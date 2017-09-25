@@ -2,7 +2,7 @@ import { handleActions } from 'redux-actions'
 import { loadGame, playerJoined, playerLeft } from './actions'
 
 import omit from '../../util/omit'
-import { isLogged, getLoggedUserUid } from '../auth'
+import { isLogged, getUserUid } from '../auth'
 
 const initialState = {
   players: {},
@@ -33,15 +33,15 @@ const reducer = handleActions({
 }, initialState)
 
 const getGame = state => state.game
-const getName = state => getGame(state).key
+const getGameName = state => getGame(state).key
 const getPlayers = state => Object.values(getGame(state).players)
 const getOwner = state => getGame(state).owner
 const isOwner = state =>
-  isLogged(state) && (getOwner(state) === getLoggedUserUid(state))
+  isLogged(state) && (getOwner(state) === getUserUid(state))
 
 export {
   getGame,
-  getName,
+  getGameName,
   getPlayers,
   getOwner,
   isOwner,

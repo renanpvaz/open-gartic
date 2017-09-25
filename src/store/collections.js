@@ -3,6 +3,7 @@ import createCollection from '../util/create-collection'
 
 const Games = createCollection(firebase, '/games')
 const Players = createCollection(firebase, '/players')
+const Guesses = createCollection(firebase, '/guesses')
 
 // {
 //   games: {
@@ -49,5 +50,6 @@ const Players = createCollection(firebase, '/players')
 
 export {
   Games,
-  Players
+  Players,
+  Guesses,
 }

@@ -2,7 +2,7 @@ import firebase from 'firebase'
 import { createActions } from 'redux-actions'
 
 const { updateLoggedUser } = createActions({
-  UPDATE_LOGGED_USER: loggedUser => ({ uid: loggedUser.uid }),
+  UPDATE_LOGGED_USER: ({ uid, name }) => ({ uid, name }),
 })
 
 // FIXME use auth provider abstraction
