@@ -7,6 +7,7 @@ import GuessBox from '../../components/GuessBox'
 import Ranking from '../../components/Ranking'
 import Space from '../../components/Space'
 import Flex from '../../components/Flex'
+import Panel from '../../components/Panel'
 
 import ToolsSidebar from '../../containers/ToolsSidebar'
 import DrawingBoard from '../../containers/DrawingBoard'
@@ -14,6 +15,8 @@ import DrawingBoard from '../../containers/DrawingBoard'
 import { getUser } from '../../store/auth'
 import { getGame, getPlayers } from '../../store/game'
 import * as actions from '../../store/game/actions'
+
+import './game.css'
 
 class Game extends React.Component {
   constructor(props) {
@@ -48,22 +51,38 @@ class Game extends React.Component {
 
     return (
       <main className="game">
-        <Flex.Row width="100vw" height="100vh">
-          <Space height="100%">
-            <Sidebar>
-              <Ranking players={this.props.players} />
-              <ToolsSidebar />
-            </Sidebar>
-          </Space>
-          <Flex.Column height="100%" width="100%">
-            {loaded && <DrawingBoard />}
-            <Space height="40vh" fit>
-              {loaded && <GuessBox />}
-            </Space>
-          </Flex.Column>
-        </Flex.Row>
+        <Sidebar>
+          <Ranking players={this.props.players} />
+          <ToolsSidebar />
+        </Sidebar>
+        <Panel flex={1} column>
+           <Panel flex={2}>
+             {loaded && <DrawingBoard />}
+           </Panel>
+           <Panel flex={1}>
+             {loaded && <GuessBox />}
+           </Panel>
+        </Panel>
       </main>
     )
+    // return (
+    //   <main className="game">
+    //     <Flex.Row width="100vw" height="100vh">
+    //       <Space height="100%">
+    //         <Sidebar>
+    // <Ranking players={this.props.players} />
+    //           <ToolsSidebar />
+    //         </Sidebar>
+    //       </Space>
+    //       <Flex.Column height="100%" width="100%">
+    //         {loaded && <DrawingBoard />}
+    //         <Space height="40vh" fit>
+    //           {loaded && <GuessBox />}
+    //         </Space>
+    //       </Flex.Column>
+    //     </Flex.Row>
+    //   </main>
+    // )
   }
 }
 
