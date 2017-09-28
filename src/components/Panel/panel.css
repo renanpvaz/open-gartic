@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.panel-fit {
+  width: 100%;
+}
+
 .panel-inset {
   box-sizing: border-box;
 }

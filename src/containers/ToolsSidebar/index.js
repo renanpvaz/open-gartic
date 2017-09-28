@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import Palette from '../../components/Palette'
-import Flex from '../../components/Flex'
+import Panel from '../../components/Panel'
 import RangeSlider from '../../components/RangeSlider'
 
 import { getSize } from '../../store/sketch'
@@ -13,7 +13,7 @@ import './tools-sidebar.css'
 
 // FIXME move to /containers folder
 const ToolsSidebar = props => (
-  <Flex.Column tag="aside" className="tools-sidebar">
+  <Panel tag="aside" className="tools-sidebar" column>
     <Palette
       onSelect={color => props.updateColor(color)}
       colors={[ // FIXME move to constant module
@@ -24,7 +24,7 @@ const ToolsSidebar = props => (
         '#26968c',
       ]}
     />
-    <Flex.Row alignItems="center" justifyContent="space-around">
+    <Panel row align="center" justify="space-around">
       <RangeSlider
         value={props.size}
         onChange={({ value }) => props.updateSize(value)}
@@ -32,8 +32,8 @@ const ToolsSidebar = props => (
         max="32"
       />
       {/* {`${this.state.size || 1}px`} */}
-    </Flex.Row>
-  </Flex.Column>
+    </Panel>
+  </Panel>
 )
 
 export default connect(

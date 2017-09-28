@@ -31,6 +31,12 @@ describe('<Panel />', () => {
     ).to.equal(true)
   })
 
+  it('can fit elements', () => {
+    expect(
+      shallow(<Panel fit />).hasClass('panel-fit')
+    ).to.equal(true)
+  })
+
   it('sets below spacing', () => {
     expect(
       shallow(<Panel below="xs" />).hasClass('panel-below-xs')

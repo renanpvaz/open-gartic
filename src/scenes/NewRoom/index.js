@@ -9,6 +9,7 @@ import TextInput from '../../components/TextInput'
 import Button from '../../components/Button'
 import Tag from '../../components/Tag'
 import Flex from '../../components/Flex'
+import Panel from '../../components/Panel'
 import Label from '../../components/Label'
 import Form from '../../components/Form'
 
@@ -60,7 +61,7 @@ class NewGame extends React.Component {
     } = this.state
 
     return (
-      <Flex.Column>
+      <Panel column>
         <Form
           primaryAction={<Button onClick={this.handleSubmit} primary>create room</Button>}
           secondaryAction={<Button>cancel</Button>}
@@ -100,9 +101,9 @@ class NewGame extends React.Component {
               value={newWord}
             />
           </Label>
-          <Flex.Wrap>{words.map(word => <Tag key={word}>{word}</Tag>)}</Flex.Wrap>
+          <Panel wrap>{words.map(word => <Tag key={word}>{word}</Tag>)}</Panel>
         </Form>
-      </Flex.Column>
+      </Panel>
     )
   }
 }

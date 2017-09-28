@@ -1,20 +1,17 @@
 import React from 'react'
 
-import Space from '../Space'
-import Flex from '../Flex'
+import Panel from '../Panel'
 
 const Form = ({ children, primaryAction, secondaryAction }) => (
-  <Flex.Column tag="form">
-    <Space mB={2}>
-      {children.map(child => <Space fit mY={2}>{child}</Space>)}
-    </Space>
-    <Flex.Row tag="footer" justifyContent="flex-end">
-      <Space mX={2}>
-        {secondaryAction}
-      </Space>
+  <Panel tag="form" column>
+    <Panel below="s" between="s">
+      {children}
+    </Panel>
+    <Panel tag="footer" between="s" inline row justify="flex-end">
+      {secondaryAction}
       {primaryAction}
-    </Flex.Row>
-  </Flex.Column>
+    </Panel>
+  </Panel>
 )
 
 export default Form

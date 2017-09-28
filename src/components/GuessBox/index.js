@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import { getGuesses } from '../../store/guess'
 import * as actions from '../../store/guess/actions'
 
-import Space from '../Space'
 import TextInput from '../TextInput'
 
 import './guess-box.css'

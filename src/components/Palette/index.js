@@ -1,23 +1,19 @@
 import React from 'react'
-
-import Flex from '../Flex'
-import Space from '../Space'
+import Panel from '../Panel'
 
 import './palette.css'
 
 const Palette = ({ colors, onSelect }) => (
-  <Flex.Wrap className="palette">
+  <Panel className="palette" wrap between="s" inline>
     {
       colors.map(color => (
-        <Space key={color} padding={2}>
-          <button
-            onClick={() => onSelect(color)}
-            style={{ backgroundColor: color }}
-          />
-        </Space>
+        <button
+          onClick={() => onSelect(color)}
+          style={{ backgroundColor: color }}
+        />
       ))
     }
-  </Flex.Wrap>
+  </Panel>
 )
 
 export default Palette

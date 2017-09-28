@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Space from '../../components/Space'
+import Panel from '../../components/Panel'
 
 import './home.css'
 
@@ -8,9 +8,9 @@ const Home = ({ children }) => (
   <main className="home">
     <div className="home__content">
       <section>
-        <Space mB="2">
+        <Panel below="xl">
           <h1>Open<strong>Gartic</strong></h1>
-        </Space>
+        </Panel>
         {children}
       </section>
     </div>

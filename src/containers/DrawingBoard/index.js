@@ -100,7 +100,7 @@ class DrawingBoard extends React.Component {
 
   render() {
     return (
-      <Space innerRef={this.getContainerRef} width="80%" height="60vh">
+      <section ref={this.getContainerRef} style={{ width: '80%',  height: '60vh' }}>
         {this.state.hasContainerRef && (
           <Sketchpad
             sketching={this.props.isDrawing}
@@ -115,7 +115,7 @@ class DrawingBoard extends React.Component {
             onMouseLeave={this.handleMouseLeave}
           />
         )}
-      </Space>
+      </section>
     )
   }
 }
