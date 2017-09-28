@@ -2,7 +2,6 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import Space from '../../components/Space'
 import Sketchpad from '../../components/Sketchpad'
 
 import {

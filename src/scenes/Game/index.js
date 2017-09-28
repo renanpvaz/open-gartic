@@ -5,8 +5,6 @@ import { connect } from 'react-redux'
 import Sidebar from '../../components/Sidebar'
 import GuessBox from '../../components/GuessBox'
 import Ranking from '../../components/Ranking'
-import Space from '../../components/Space'
-import Flex from '../../components/Flex'
 import Panel from '../../components/Panel'
 
 import ToolsSidebar from '../../containers/ToolsSidebar'
